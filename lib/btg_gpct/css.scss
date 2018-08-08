@@ -1,0 +1,107 @@
+// -------------------------------------
+// Core Mixins
+// -------------------------------------
+@import "../core/core/mixins";
+// -------------------------------------
+// Variables Import
+// -------------------------------------
+// 載入全域變數
+@import "../core/core/variables";
+// -------------------------------------
+// Susy 設定載入
+// -------------------------------------
+// @import "../core/core/susy-config";
+// -------------------------------------
+// Components / Modules Setting
+// -------------------------------------
+// 請輸入您的ClassName
+$classname: 'btg_gpct';
+// 編譯後的CSS所在位置，如果你的CSS有需要讀圖檔或字型，請在URL字串前加上'#{$resource-path}'
+$resource-path: resource-path($classname);
+// -------------------------------------
+// 您的CSS Code
+// -------------------------------------
+//以下範例可以刪除，改為您自已的CSS Code
+$bg-color: #f7f7f7;
+$bd-color: #dddddd;
+$xin_theme_color:#ff8c79;
+.#{$classname} {
+    display: inline-block;
+    border: solid 1px $bd-color;
+    text-align: center;
+    vertical-align: middle;
+    height: 30px;
+    @include clearfix;
+    & > .minus,
+    & > .add {
+        border: none;
+        padding: 0px;
+        box-shadow: none;
+        display: inline-block;
+        float: left;
+        background: $bg-color;
+        width: 28px;
+        height: 28px;
+        font-size: 22px;
+        font-weight: bold;
+        text-decoration: none;
+        color: #666;
+        &:focus {
+            outline: none;
+        }
+    }
+    & > .amount {
+        display: inline-block;
+        float: left;
+        background: white;
+        line-height: 28px;
+        border-left: solid 1px $bd-color;
+        border-right: solid 1px $bd-color;
+        width: 36px;
+        height: 28px;
+        text-align: center;
+        border-top: none;
+        border-bottom: none;
+        border-radius: 0;
+        padding: 0;
+        &:focus {
+            outline: none;
+        }
+    }
+    &.xin{
+        >.minus,.add{
+            color:$xin_theme_color;
+            &:hover{
+                background-color: #dfdfdf;
+            }
+        }
+        >.minus.disabled ,>.add.disabled{
+            color: #dfdfdf;
+            &:hover{
+                background-color: #f7f7f7;
+            }
+        }
+    }
+    &.xin-circle{
+        border:none;
+        >.minus,.add{
+            background-color: transparent;
+            color:#8bcbcf;
+            font-weight: inherit;
+            width: inherit;
+            height: inherit;
+            font-size: 30px;
+            &:hover{
+                color: #65adb1;
+            }
+            &.disabled{
+                color: #e3e3e3;
+            }
+        }
+        >.amount{
+            border:none;
+            font-size: 20px;
+            font-weight: bold;
+        }
+    }
+}

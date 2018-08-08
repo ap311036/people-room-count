@@ -1,0 +1,15 @@
+{
+  "name": "@magaele/btg_gpct",
+  "version": "1.0.0",
+  "description": "",
+  "main": "module.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "http://git.liontech.com.tw/btg_gpct.git"
+  },
+  "author": "",
+  "license": "ISC"
+}

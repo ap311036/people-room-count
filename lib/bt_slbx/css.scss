@@ -1,0 +1,86 @@
+// -------------------------------------
+// Susy Import
+// -------------------------------------
+//@import "susy";
+// -------------------------------------
+// Core Mixins
+// -------------------------------------
+@import "../core/core/mixins";
+// -------------------------------------
+// Variables Import
+// -------------------------------------
+// 載入全域變數
+@import "../core/core/variables";
+// -------------------------------------
+// Components / Modules Setting
+// -------------------------------------
+// 請輸入您的ClassName
+$classname: 'bt_slbx';
+// 編譯後的CSS所在位置，如果你的CSS有需要讀圖檔或字型，請在URL字串前加上'#{$resource-path}'
+$resource-path: resource-path($classname);
+// -------------------------------------
+// 您的CSS Code
+// -------------------------------------
+//以下範例可以刪除，改為您自已的CSS Code
+$theme-color:#24a07c;
+$bg-color:#e0f2ed;
+$hover-bg:#69c1a8;
+$border-color:#ddd;
+
+.#{$classname} {
+	border:1px solid $border-color;
+	padding: 5px 10px;
+	display: inline-block;
+	color: $theme-color;
+	cursor: pointer;
+	&:hover{
+		text-decoration: none;
+	}
+	&.lg{
+		color: #000;
+		background: white;
+		padding: 7px 30px;
+		&:after{
+			content: '';
+			display: inline-block;
+			margin-left: 10px;
+			width: 0;
+			height: 0;
+			border-style: solid;
+			border-width: 4.5px 0 4.5px 5px;
+			border-color: transparent transparent transparent #000000;
+		}
+		&:hover{
+			color: #0077b3;
+			&:after{
+				border-color: transparent transparent transparent #0077b3;
+			}
+		}
+	}
+	&.s{
+		padding: 5px;
+	}
+	&.bg{
+		background-color: $bg-color;
+		border:none;
+		text-align: center;
+		min-width: 118px;
+		&:hover{
+			color: #fff;
+			background-color: $hover-bg;
+		}
+		& > i {
+			vertical-align: middle;
+			margin-right: 3px;
+		}
+	}
+	&.green {
+		color: #1c9c9d;
+		border-color: #86cacb;
+		&:hover,
+		&:active {
+			background-color: #fff9e3;
+		}
+	}
+	
+}
