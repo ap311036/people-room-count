@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Preview</title>
+    <link rel="stylesheet" href="css.css">
+    <link rel="stylesheet" href="./lib/core/core.css">
+    <link rel="stylesheet" href="./lib/ic-ln/css.css">
+    <link rel="stylesheet" href="./lib/st_lnls/css.css">
+    <link rel="stylesheet" href="./lib/btg_gpct/css.css">
+    <link rel="stylesheet" href="./lib/bt_slbx/css.css">
+    <script src="http://code.jquery.com/jquery-1.12.0.min.js"></script>
+    <script type="text/javascript" src="http://maps.google.cn/maps/api/js?key=AIzaSyDQ60yIyY_iuD3vetS7vn8yLjHJ8KhzJas&sensor=false&libraries=places"></script>
+    <script src="module.js"></script>
+</head>
+<body style="width: 100%;height: 900px;">
+<div class="container">
+    <div class="row">
+        <h2>間數/人數(newPackage)</h2>
+        <input class="room newpackage" name="roomNum" type="text" placeholder="間數 / 人數" data-toggle="st_lnht">
+    </div>
+</div>
+<script src="./lib/st_lnls/module.js"></script>
+<script src="./lib/btg_gpct/module.js"></script>
+<script src="./module.js"></script>
+<script>
+    $(function(){
+        //間數/人數
+        // $('.default').st_lnht({
+        //     readonly:false,
+        //     callback: {
+        //         whenInitRoom: function(elem,$module){
+        //             var settings = {
+        //                 defaultSelector: 'off',
+        //                 optionObj: {				//傳入一個obj產生option, value值為obj的key ,內文為key對應的值
+        //                     1:'共1間',
+        //                     2:'共2間',
+        //                     3:'共3間',
+        //                     4:'共4間',
+        //                     5:'共5間'
+        //                 },
+        //                 whenSelected: function($this){ //當選擇選項時執行的function,不支援mobile版預設select時
+        //                     $module.optionsMouseDown($this,$this.val()); //点击options时创建detail
+        //                 }
+        //             };
+
+        //             $(elem).st_lnls($.extend({
+        //                 haveDefaultDisabledVal: false,	//是否要有預設的disabled選項，預設true
+        //                 defaultSelectedVal: 1					//傳入Value設定預設值
+        //             },settings))
+        //         },
+        //         whenInitChildAge: function(elem){
+        //             var settings = {
+        //                 optionObj: {				//傳入一個obj產生option, value值為obj的key ,內文為key對應的值
+        //                     1:'0歲',
+        //                     2:'1歲',
+        //                     3:'2歲',
+        //                     4:'3歲',
+        //                     5:'4歲',
+        //                     6:'5歲',
+        //                     7:'6歲',
+        //                     8:'7歲',
+        //                     9:'8歲',
+        //                     10:'9歲',
+        //                     11:'10歲',
+        //                     12:'11歲',
+        //                     13:'12歲'
+        //                 }
+        //             };
+        //             $(elem).eq($(elem).length - 1).find('.st_lnls').st_lnls($.extend({
+        //                 haveDefaultDisabledVal: false,	//是否要有預設的disabled選項，預設true
+        //                 defaultSelectedVal: 13					//傳入Value設定預設值
+        //             },settings))
+        //         },
+        //         whenInitPeopleNum: function(adult,child,$module){
+        //             $(adult).btg_gpct({
+        //                 max: 7,
+        //                 min: 1
+        //             }).on('click','.add',function(){
+        //                 $module.elem.val($module.updateValue(1,$($module.obj),null));
+        //             }).on('click','.minus',function(){
+        //                 $module.elem.val($module.updateValue(1,$($module.obj),null));
+        //             });
+        //             $(child).btg_gpct({
+        //                 max: 3,
+        //                 min: 0
+        //             }).on('click','.add',function(){
+        //                 var _this = $(this);
+        //                 $module.addChild(_this);
+        //             }).on('click','.minus',function(){
+        //                 var _this = $(this);
+        //                 $module.minusChild(_this);
+        //             });
+        //         }
+        //     }
+        // }); 
+        
+        //間數/人數(newPackage) select 模式
+        $('.newpackage').st_lnht({
+        	newpackage: true,
+        	warningText: '一筆訂單總人數若超過8位，請分兩張單位訂購。<br>一位大人對多只能帶2名小孩或+1名嬰兒（小孩定義：年滿2歲含以上未滿12歲。嬰兒定義：未滿2歲。）',
+        	kidsNoBed: true,
+            callback: {
+                whenInitRoom: function(elem,$module){
+                    var settings = {
+                        defaultSelector: 'off',
+                        optionObj: {				//傳入一個obj產生option, value值為obj的key ,內文為key對應的值
+                            1:'共1間',
+                            2:'共2間',
+                            3:'共3間',
+                            4:'共4間',
+                            5:'共5間'
+                        },
+                        whenSelected: function($this){ //當選擇選項時執行的function,不支援mobile版預設select時
+                            $module.optionsMouseDown($this,$this.val()); //点击options时创建detail
+                        }
+                    };
+
+                    $(elem).st_lnls($.extend({
+                        haveDefaultDisabledVal: false,	//是否要有預設的disabled選項，預設true
+                        defaultSelectedVal: 1					//傳入Value設定預設值
+                    },settings))
+                },
+                whenInitChildAge: function(elem){
+                    var settings = {
+                        optionObj: {				//傳入一個obj產生option, value值為obj的key ,內文為key對應的值
+                            1:'0歲',
+                            2:'1歲',
+                            3:'2歲',
+                            4:'3歲',
+                            5:'4歲',
+                            6:'5歲',
+                            7:'6歲',
+                            8:'7歲',
+                            9:'8歲',
+                            10:'9歲',
+                            11:'10歲',
+                            12:'11歲',
+                            13:'12歲'
+                        }
+                    };
+                    $(elem).eq($(elem).length - 1).find('.st_lnls').st_lnls($.extend({
+                        haveDefaultDisabledVal: false,	//是否要有預設的disabled選項，預設true
+                        defaultSelectedVal: 13					//傳入Value設定預設值
+                    },settings))
+                },
+                whenInitPeopleNum: function(adult,child,$module){
+                    $(adult).btg_gpct({
+                        max: 7,
+                        min: 1
+                    }).on('click','.add',function(){
+                        $module.elem.val($module.updateValue(1,$($module.obj),null));
+                    }).on('click','.minus',function(){
+                        $module.elem.val($module.updateValue(1,$($module.obj),null));
+                    });
+                    $(child).btg_gpct({
+                        max: 3,
+                        min: 0
+                    }).on('click','.add',function(){
+                        var _this = $(this);
+                        $module.addChild(_this);
+                    }).on('click','.minus',function(){
+                        var _this = $(this);
+                        $module.minusChild(_this);
+                    });
+                }
+            }
+        });
+        
+        // // tab 模式 Start
+        // $('.tab-mode').st_lnht({
+        //     newpackage: true,
+        //     mode: 'tab', // mode: select|tab
+        //     // tabCount: 7, //最多7間,
+        //     tabActiveIndex: 5, // 預設房間參數
+        //     appendDiv: '.tab-mode-container', // 將模組放到哪個容器\
+        //     // warningText: '一筆訂單總人數若超過8位，請分兩張單位訂購。<br>一位大人對多只能帶2名小孩或+1名嬰兒（小孩定義：年滿2歲含以上未滿12歲。嬰兒定義：未滿2歲。）',
+        //     kidsNoBed: true,
+        //     closeBtnClass: ['new-x'], // 此為針對closebtn塞任意class的接口, 格式為陣列, 如:['aclass', 'bclass']之類的
+        //     callback: {
+        //         whenInitRoom: function(elem,$module){
+        //             console.log('whenInitRoom',elem)
+        //             var roomCount = $(elem).data('room-count');
+        //             // 註冊init預設資料傳進來要build對應房間數
+        //             $module.optionsMouseDown($(elem),roomCount );
+        //         },
+                
+        //         whenInitPeopleNum: function(adult,child,$module){
+        //             // 大人計數器
+        //             $(adult).btg_gpct({
+        //                 max: 7,
+        //                 min: 1
+        //             }).on('click','.add',function(){
+        //                 $module.elem.val($module.updateValue(1,$($module.obj),null));
+        //                 console.log( '總人數:'+$module.getAllRoomPeopleCount().people );
+
+        //             }).on('click','.minus',function(){
+        //                 $module.elem.val($module.updateValue(1,$($module.obj),null));
+        //                 console.log( '總人數:'+$module.getAllRoomPeopleCount().people );
+        //             });
+        //             // 小孩計數器
+        //             $(child).btg_gpct({
+        //                 max: 3,
+        //                 min: 0
+        //             }).on('click','.add',function(){
+        //                 var _this = $(this);
+        //                 $module.addChild(_this);
+        //                 console.log( '總人數:'+$module.getAllRoomPeopleCount().people );
+        //             }).on('click','.minus',function(){
+        //                 var _this = $(this);
+        //                 $module.minusChild(_this);
+        //                 console.log( '總人數:'+$module.getAllRoomPeopleCount().people );
+        //             });
+        //         },
+        //         whenInitChildAge: function(elem){
+        //             // 再增加小孩數目時觸發
+        //             var settings = {
+        //                 optionObj: { //傳入一個obj產生option, value值為obj的key ,內文為key對應的值
+        //                     1:'0歲',
+        //                     2:'1歲',
+        //                     3:'2歲',
+        //                     4:'3歲',
+        //                     5:'4歲',
+        //                     6:'5歲',
+        //                     7:'6歲',
+        //                     8:'7歲',
+        //                     9:'8歲',
+        //                     10:'9歲',
+        //                     11:'10歲',
+        //                     12:'11歲',
+        //                     13:'12歲'
+        //                 }
+        //             };
+        //             // 增加完小孩 select 再去啟動模組
+        //             $(elem).eq($(elem).length - 1)
+        //                    .find('.st_lnls')
+        //                    .st_lnls(
+        //                         $.extend({
+        //                             haveDefaultDisabledVal: false,  //是否要有預設的disabled選項，預設true
+        //                             defaultSelectedVal: 13                  //傳入Value設定預設值
+        //                         },settings)
+        //                     );
+        //         },
+        //         whenTabBtnClick: function($tabBtn){
+        //             console.log('whenTabBtnClick',$tabBtn);
+        //         }
+        //     }
+        // });
+        // // 預設將panel打開
+        // $('input.tab-mode').click();
+        // tab 模式 End
+    });
+</script>
+</body>
+</html>
